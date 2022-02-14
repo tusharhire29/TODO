@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://kit.fontawesome.com/0a3063a070.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+
+<body>
+    <marquee class="quote"style="margin-top:10px" width="100%" direction="right" height="30px" style="color: rgb(223, 29, 29);font-size: 20px;">
+        <em>“Live life to the fullest and focus on the positive.<i class='far fa-grin' style='font-size:20px'><i class='far fa-grin' style='font-size:20px'></i><i class='far fa-grin' style='font-size:20px'></i></i>"</em>
+         </marquee>
+
+         <p class="welcome" style="font-size: 30px; font-family: 'Times New Roman', Times, serif;text-align: center;"><b>Welcome!</b></p>
+        
+    <div style="margin-top: 50px;" class="ui container" >
+        <h1 class="ui center aligned header" style="font-family: 'Times New Roman', Times, serif; align-items: center;">To-Do Web App <i class='far fa-list-alt' style='font-size:30px'></i></h1>
+        <form class="ui form" action="/add" method="post" id="box">
+            <div class="field">
+               <label for=""><h4 style="color: rgb(63, 0, 92);font-family: 'Times New Roman', Times, serif;"><i class='fas fa-angle-double-right' style='font-size:20px;color:rgb(77, 13, 107)'></i> Add To-DO item:</h4></label> 
+                <input type="text" name="title" placeholder="Enter item... and Description..."><br>
+           <br> <button class="ui green button" type="submit" id="hov"><i class='fas fa-sign-in-alt' style='font-size:15px'></i> Enter</button>
+            <button class="ui red button" type="reset" id="hov" style="float: right;"><i class='fas fa-undo' style='font-size:15px'></i> Reset</button>
+        </form>
+   
+        <div><h3 style="font-family: 'Times New Roman', Times, serif;color:rgb(94, 48, 18); text-align: center;" id="hover">Your to-do list <i class='far fa-arrow-alt-circle-down' style='font: size 30px;px;color:rgb(94, 48, 18)'></i></h3></div>
+        {% for todo in todo_list %}
+        <div class="ui segment" id="box2">
+            
+            <p class="ui big header">{{todo.id }} | {{ todo.title }} </p>
+
+            {% if todo.complete == False %}
+            <span class="ui gray label">Not Complete</span>
+            {% else %}
+            <span class="ui green label">Completed</span>
+            {% endif %}
+
+            <a class="ui blue button" id="hov" href="/update/{{ todo.id }}">Update</a>
+            <a class="ui red button" id="hov" href="/delete/{{ todo.id }}">Delete</a>
+        </div>
+       
+        {% endfor %}
+    </div>
+</body>
+
+</html>
